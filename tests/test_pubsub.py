@@ -1,8 +1,8 @@
-import unittest
+from unittest import TestCase
 from utils.pubsub import pubsub_message_to_dict
 
 
-class TestPubSub(unittest.TestCase):
+class TestPubSub(TestCase):
 
     def test_pubsub_message_to_dict_ok(self):
         input_request = {"message": {"data": b'aGVsbG8gd29ybGQ='}}
