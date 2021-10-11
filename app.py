@@ -13,9 +13,7 @@ def home():
 def pubsub():
     envelope = request.get_json()
     message_data, err_code = pubsub_message_to_dict(envelope)
-    if err_code >= 400:
-        return message_data
-    return "", 204
+    return message_data, err_code
 
 
 def run():
