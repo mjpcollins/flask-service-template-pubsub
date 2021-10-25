@@ -13,6 +13,9 @@ def home():
 def pubsub():
     envelope = request.get_json()
     message_data, err_code = pubsub_message_to_dict(envelope)
+    print(f'envelope: {envelope} -- message_data: {message_data} -- err_code: {err_code}')
+    if err_code >= 300:
+        return message_data, err_code
     return message_data, err_code
 
 
