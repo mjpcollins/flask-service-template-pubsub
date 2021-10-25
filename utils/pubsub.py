@@ -1,3 +1,4 @@
+import json
 import base64
 
 
@@ -26,5 +27,17 @@ def pubsub_message_to_dict(envelope):
     if isinstance(pubsub_message, dict) and "data" in pubsub_message:
         data = base64.b64decode(pubsub_message["data"]).decode("utf-8").strip()
 
-    full_decoded_message = {"message": {"data": data}}
-    return full_decoded_message, 200
+    try:
+        return_data = json.loads(data)
+        err = 200
+    except json.JSONDecodeError:
+        return_data = data
+        err = 200
+    except TypeError:
+        return_data = data
+        err = 200
+    except:
+        return_data = data
+        err = 500
+
+    return return_data, err
